@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Pen, User } from "lucide-react";
+import { Pen } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const routes = [
   {
@@ -12,9 +13,18 @@ const routes = [
     route: "/blogs",
   },
   {
-    name: "Login",
-    route: "/login",
-    icon: <User className="mr-2" size={20} />,
+    name: "",
+    route: "",
+    icon: (
+      <>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </>
+    ),
   },
 ];
 
@@ -23,19 +33,23 @@ export function Header() {
     <header className="bg-white shadow-md mb-7">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-blue-600">
-        BIApp
+          BIApp
         </Link>
         <nav>
           <ul className="flex space-x-6">
             {routes.map((el) => (
               <li key={el.name}>
-                <Link
-                  href={el.route}
-                  className="flex items-center hover:text-blue-600 transition"
-                >
-                  {el?.icon ? el.icon : null}
-                  {el.name}
-                </Link>
+                {el.route ? (
+                  <Link
+                    href={el.route}
+                    className="flex items-center hover:text-blue-600 transition"
+                  >
+                    {el?.icon ? el.icon : null}
+                    {el.name}
+                  </Link>
+                ) : (
+                  el.icon
+                )}
               </li>
             ))}
           </ul>

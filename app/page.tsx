@@ -3,6 +3,7 @@ import { Flame, Clock, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "@/types/blogPost";
+// import { auth, currentUser } from "@clerk/nextjs/server";
 
 // Sample blog post data (would normally come from database)
 const featuredPosts = [
@@ -66,7 +67,7 @@ const BlogPostCard = ({ post }: { post: Post }) => (
   </div>
 );
 
-const HomePage = () => {
+async function HomePage() {
   return (
     <div className="container mx-auto px-4">
       {/* Hero Section */}

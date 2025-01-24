@@ -6,7 +6,7 @@ import BlogPostCard from "@/components/blog-post-card";
 import { Blog } from "@/types/blogPost";
 
 async function BlogListingPage() {
-    const res = await fetch("http://localhost:3000/blogs/api");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/blogs/api`);
     const posts = await res.json()
     
     return (

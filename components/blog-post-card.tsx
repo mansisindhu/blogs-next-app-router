@@ -12,6 +12,7 @@ const BlogPostCard = ({ post }: { post: Blog }) => (
                     {new Date(post.createdAt).toLocaleDateString()}
                 </div>
             </div>
+            {post?.author?.name && <h2 className="text-sm font-bold mb-2">Author: {post?.author?.name}</h2>}
             <Link
                 href={`/blogs/${post._id}`}
                 className="mt-4 block text-blue-600 hover:underline"

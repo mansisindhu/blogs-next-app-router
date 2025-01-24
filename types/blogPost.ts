@@ -13,4 +13,8 @@ export interface Blog {
     title: string;
     content: string
     createdAt: string
+    author: {
+        name: string,
+        id: string
+    }
 }

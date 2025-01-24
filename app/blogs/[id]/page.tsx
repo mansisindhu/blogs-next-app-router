@@ -3,7 +3,7 @@ import { Blog } from "@/types/blogPost";
 async function BlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
 
-  const res = await fetch(`http://localhost:3000/blogs/${id}/api`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/blogs/${id}/api`);
   const post: Blog = await res.json()
   
   return (

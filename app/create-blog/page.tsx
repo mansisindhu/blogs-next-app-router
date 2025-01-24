@@ -1,20 +1,34 @@
-// import { auth, currentUser } from "@clerk/nextjs/server";
-// import { redirect } from "next/navigation";
+import { currentUser } from '@clerk/nextjs/server'
 
 export default async function CreateBlog() {
-    //     const { userId } = await auth();
+    const userInfo = await currentUser();
+    console.log(userInfo)
+    const createBlog = async (formData: FormData) => {
+        "use server";
 
-    //     if (!userId) {
-    //         redirect("/sign-in")
-    //     }
+        const title = formData.get("title");
+        const content = formData.get("content")
 
-    //   const user = await currentUser()
+        await fetch(`${process.env.NEXT_PUBLIC_URL}/blogs/api`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title,
+                content,
+                author: {
+                    id: userInfo?.id,
+                    name: `${userInfo?.firstName} ${userInfo?.lastName}`
+                }
+            })
+        })
+    } 
 
-    //   console.log(userId, user)
     return (
         <div className="container mx-auto my-8">
             <h1 className="text-3xl font-bold mb-6">Create New Blog Post</h1>
-            <form>
+            <form action={createBlog}>
                 <div className="mb-6">
                     <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
                         Title:

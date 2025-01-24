@@ -1,8 +1,8 @@
-import { Post } from "@/types/blogPost";
+import { Blog } from "@/types/blogPost";
 import { Clock } from "lucide-react";
 import Link from "next/link";
 
-const BlogPostCard = ({ post }: { post: Post }) => (
+const BlogPostCard = ({ post }: { post: Blog }) => (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
         <div className="p-5">
             <h3 className="text-xl font-bold mb-2">{post.title}</h3>
@@ -13,7 +13,7 @@ const BlogPostCard = ({ post }: { post: Post }) => (
                 </div>
             </div>
             <Link
-                href={`/blogs/${post.id}`}
+                href={`/blogs/${post._id}`}
                 className="mt-4 block text-blue-600 hover:underline"
             >
                 Read More

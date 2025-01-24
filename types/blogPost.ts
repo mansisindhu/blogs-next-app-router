@@ -7,3 +7,10 @@ export interface Post {
     content: string
     createdAt: string
 }
+
+export interface Blog {
+    _id: string
+    title: string;
+    content: string
+    createdAt: string
+}
